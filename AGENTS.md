@@ -28,3 +28,6 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+- AFTERGLOW core lives in src/lib/afterglow (types, theme/templates, ai prompt+schema+local fallback, store); page items are independent objects positioned in % of the page so layouts scale on any screen.
+- Memories persist in localStorage (no backend yet); Gemini prompt/schema are ready but the app uses the local fallback until Cloud is enabled.

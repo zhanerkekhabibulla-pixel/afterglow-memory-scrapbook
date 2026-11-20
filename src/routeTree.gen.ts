@@ -10,33 +10,102 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CreateRouteImport } from './routes/create'
+import { Route as AlbumIdRouteImport } from './routes/album.$id'
+import { Route as DesignIdRouteImport } from './routes/design.$id'
+import { Route as EditorIdRouteImport } from './routes/editor.$id'
+import { Route as PhotoIdItemIdRouteImport } from './routes/photo.$id.$itemId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CreateRoute = CreateRouteImport.update({
+  id: '/create',
+  path: '/create',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AlbumIdRoute = AlbumIdRouteImport.update({
+  id: '/album/$id',
+  path: '/album/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DesignIdRoute = DesignIdRouteImport.update({
+  id: '/design/$id',
+  path: '/design/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EditorIdRoute = EditorIdRouteImport.update({
+  id: '/editor/$id',
+  path: '/editor/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PhotoIdItemIdRoute = PhotoIdItemIdRouteImport.update({
+  id: '/photo/$id/$itemId',
+  path: '/photo/$id/$itemId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/create': typeof CreateRoute
+  '/album/$id': typeof AlbumIdRoute
+  '/design/$id': typeof DesignIdRoute
+  '/editor/$id': typeof EditorIdRoute
+  '/photo/$id/$itemId': typeof PhotoIdItemIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/create': typeof CreateRoute
+  '/album/$id': typeof AlbumIdRoute
+  '/design/$id': typeof DesignIdRoute
+  '/editor/$id': typeof EditorIdRoute
+  '/photo/$id/$itemId': typeof PhotoIdItemIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/create': typeof CreateRoute
+  '/album/$id': typeof AlbumIdRoute
+  '/design/$id': typeof DesignIdRoute
+  '/editor/$id': typeof EditorIdRoute
+  '/photo/$id/$itemId': typeof PhotoIdItemIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/create'
+    | '/album/$id'
+    | '/design/$id'
+    | '/editor/$id'
+    | '/photo/$id/$itemId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/create'
+    | '/album/$id'
+    | '/design/$id'
+    | '/editor/$id'
+    | '/photo/$id/$itemId'
+  id:
+    | '__root__'
+    | '/'
+    | '/create'
+    | '/album/$id'
+    | '/design/$id'
+    | '/editor/$id'
+    | '/photo/$id/$itemId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CreateRoute: typeof CreateRoute
+  AlbumIdRoute: typeof AlbumIdRoute
+  DesignIdRoute: typeof DesignIdRoute
+  EditorIdRoute: typeof EditorIdRoute
+  PhotoIdItemIdRoute: typeof PhotoIdItemIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +117,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/create': {
+      id: '/create'
+      path: '/create'
+      fullPath: '/create'
+      preLoaderRoute: typeof CreateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/album/$id': {
+      id: '/album/$id'
+      path: '/album/$id'
+      fullPath: '/album/$id'
+      preLoaderRoute: typeof AlbumIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/design/$id': {
+      id: '/design/$id'
+      path: '/design/$id'
+      fullPath: '/design/$id'
+      preLoaderRoute: typeof DesignIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/editor/$id': {
+      id: '/editor/$id'
+      path: '/editor/$id'
+      fullPath: '/editor/$id'
+      preLoaderRoute: typeof EditorIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/photo/$id/$itemId': {
+      id: '/photo/$id/$itemId'
+      path: '/photo/$id/$itemId'
+      fullPath: '/photo/$id/$itemId'
+      preLoaderRoute: typeof PhotoIdItemIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CreateRoute: CreateRoute,
+  AlbumIdRoute: AlbumIdRoute,
+  DesignIdRoute: DesignIdRoute,
+  EditorIdRoute: EditorIdRoute,
+  PhotoIdItemIdRoute: PhotoIdItemIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
